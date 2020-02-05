@@ -8,12 +8,14 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 import SimpleMenu from "../Menu/Menu";
+import SideDrawer from "./SideDrawer";
 import styles from "./NavigationStyles";
 
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
+      <SideDrawer />
       <AppBar position="static" className={classes.navigation}>
         <Toolbar>
           <Typography variant="h6" color="inherit" className={classes.grow}>
@@ -21,7 +23,7 @@ function ButtonAppBar(props) {
               Pizzeria-MERN
             </Link>
           </Typography>
-          <SimpleMenu className={`${classes.btnNormal}`} />
+          <SimpleMenu responsive={false} />
           <Button
             className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
           >
