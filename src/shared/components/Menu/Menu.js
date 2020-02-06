@@ -18,6 +18,7 @@ class SimpleMenu extends React.Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+    this.props.closeResponsiveMenu();
   };
 
   render() {

@@ -22,6 +22,12 @@ function App() {
         <Route path="/bebidas" exact>
           bebidas
         </Route>
+        <Route path="/iniciarSesion" exact>
+          iniciar sesión
+        </Route>
+        <Route path="/registrarse" exact>
+          registrarse
+        </Route>
         <Redirect to="/" exact />
       </Switch>
     </div>

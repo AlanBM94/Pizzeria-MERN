@@ -1,7 +1,10 @@
 import sizes from "../../../sizes/sizez";
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    "& a": {
+      textDecoration: "none"
+    }
   },
   grow: {
     flexGrow: 1,
@@ -17,7 +20,7 @@ const styles = {
     padding: "0 2rem",
     [sizes.down("xs")]: {
       height: "64px",
-      padding: "0 1rem"
+      padding: "0"
     }
   },
   btnNormal: {
@@ -51,6 +54,29 @@ const styles = {
     color: "#ffff",
     fontFamily: "Noto Serif",
     fontWeight: "700"
+  },
+  btnBurguer: {
+    display: "none",
+    [sizes.down("xs")]: {
+      width: "2rem",
+      height: "2rem",
+      background: "transparent",
+      border: "none",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      marginRight: "1.5rem",
+      cursor: "pointer",
+      "&:focus": {
+        outline: "none"
+      },
+      "& span": {
+        display: "block",
+        width: "2rem",
+        height: "2.5px",
+        background: "white"
+      }
+    }
   }
 };
 
