@@ -1,4 +1,7 @@
-import sizes from "../../../sizes/sizez";
+import sizes from "../../../styles/sizes/sizez";
+import colors from "../../../styles/colors/colors";
+
+const { primary } = colors;
 
 const styles = {
   sideDrawer: {
@@ -7,7 +10,7 @@ const styles = {
     zIndex: "10",
     width: "60%",
     position: "fixed",
-    background: "#FEC600",
+    background: primary,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

@@ -1,14 +1,18 @@
-import sizes from "../../../sizes/sizez";
+import sizes from "../../../styles/sizes/sizez";
+import colors from "../../../styles/colors/colors";
+
+const { white } = colors;
+
 const styles = {
   btnMenu: {
-    color: "#ffff",
+    color: white,
     textTransform: "capitalize",
     [sizes.down("xs")]: {
       display: "none"
     }
   },
   btnMenuResponsive: {
-    color: "#ffff",
+    color: white,
     textTransform: "capitalize",
     display: "block"
   },

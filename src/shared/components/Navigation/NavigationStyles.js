@@ -1,4 +1,8 @@
-import sizes from "../../../sizes/sizez";
+import sizes from "../../../styles/sizes/sizez";
+import colors from "../../../styles/colors/colors";
+
+const { black, white, primary } = colors;
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -8,14 +12,18 @@ const styles = {
   },
   grow: {
     flexGrow: 1,
-    textAlign: "left"
+    textAlign: "left",
+    [sizes.down("xs")]: {
+      textAlign: "right",
+      paddingRight: "5px"
+    }
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20
   },
   navigation: {
-    background: "#131212",
+    background: black,
     boxShadow: "none",
     padding: "0 2rem",
     [sizes.down("xs")]: {
@@ -24,7 +32,7 @@ const styles = {
     }
   },
   btnNormal: {
-    color: "#ffff",
+    color: white,
     textTransform: "capitalize",
     [sizes.down("xs")]: {
       display: "none"
@@ -34,16 +42,16 @@ const styles = {
     margin: "0 1rem"
   },
   fullButton: {
-    background: "#FEC600",
-    border: "2px solid #FEC600",
-    color: "#ffff",
+    background: primary,
+    border: `2px solid ${primary}`,
+    color: white,
     transition: "all 0.2s ease",
     textTransform: "capitalize",
     marginLeft: "1rem",
     "&:hover": {
       background: "transparent",
-      border: "2px solid #FEC600",
-      color: "#ffff"
+      border: `2px solid ${primary}`,
+      color: white
     },
     [sizes.down("xs")]: {
       display: "none"
@@ -51,7 +59,7 @@ const styles = {
   },
   logo: {
     textDecoration: "none",
-    color: "#ffff",
+    color: white,
     fontFamily: "Noto Serif",
     fontWeight: "700"
   },
