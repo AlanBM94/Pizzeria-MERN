@@ -7,7 +7,9 @@ const styles = {
       height: "13rem"
     },
     [sizes.down("xs")]: {
-      height: "7rem"
+      height: "7rem",
+      width: "7rem",
+      borderRadius: "14rem"
     }
   }
 };

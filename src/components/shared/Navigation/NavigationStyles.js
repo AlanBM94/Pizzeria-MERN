@@ -42,14 +42,14 @@ const styles = {
     margin: "0 1rem"
   },
   fullButton: {
-    background: primary,
+    background: "transparent",
     border: `2px solid ${primary}`,
     color: white,
     transition: "all 0.2s ease",
     textTransform: "capitalize",
     marginLeft: "1rem",
     "&:hover": {
-      background: "transparent",
+      background: primary,
       border: `2px solid ${primary}`,
       color: white
     },

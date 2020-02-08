@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/styles";
 
 import Tomato from "../../images/Tomato";
+import Testimonial from "../Testimonial/Testimonial";
 import styles from "./SectionContainerStyles";
 
 const SectionContainer = props => {
@@ -24,15 +25,38 @@ const SectionContainer = props => {
       </div>
     </>
   );
+
+  const testimonial = (
+    <>
+      <Testimonial text="Las mejores pizzas que he probado." />
+      <Testimonial text="Todos los ingredientes son frescos y de gran calidad." />
+      <Testimonial text="Las reservaciones son siempre seguras y el trato es muy bueno." />
+    </>
+  );
+
   const location = (
     <>
       <div className={classes.leftSideLocation}>here is the form</div>
       <div className={classes.leftSideLocation}>here is the map</div>
     </>
   );
+
+  const selectType = type => {
+    if (type === "ingredients") return ingredients;
+    if (type === "testimonials") return testimonial;
+    if (type === "location") return location;
+  };
+
+  const selectClassName = (type, classes) => {
+    if (type === "testimonials") return classes.testimonials;
+    if (type === "location") return classes.location;
+  };
+
   return (
-    <div className={classes.container}>
-      {props.type === "ingredients" ? ingredients : location}
+    <div
+      className={`${classes.container} ${selectClassName(props.type, classes)}`}
+    >
+      {selectType(props.type)}
     </div>
   );
 };

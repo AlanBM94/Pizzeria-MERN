@@ -32,14 +32,14 @@ const styles = {
       marginTop: "5rem",
       maxWidth: "15rem",
       color: white,
-      background: primary,
+      background: "transparent",
       border: `2px solid ${primary}`,
       [sizes.down("md")]: {
         margin: "2rem auto"
       },
 
       "&:hover": {
-        background: "transparent",
+        background: primary,
         border: `2px solid ${primary}`,
         color: white
       }

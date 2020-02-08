@@ -11,7 +11,6 @@ const styles = {
     width: "88%",
     display: "flex",
     alignItems: "center",
-    background: "blue",
     background: primary,
     [sizes.down("md")]: {
       flexDirection: "column"
@@ -64,6 +63,11 @@ const styles = {
         fontSize: "0.8rem"
       }
     }
+  },
+  testimonials: {
+    background: white,
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 
