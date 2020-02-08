@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/styles";
-import PizzaIcon from "../../../svg/PizzaIcon";
+import PizzaIcon from "../../svg/PizzaIcon";
 
 import styles from "./HeroStyles";
 

@@ -25,10 +25,10 @@ const styles = {
   navigation: {
     background: black,
     boxShadow: "none",
-    padding: "0 2rem",
-    [sizes.down("xs")]: {
-      height: "64px",
-      padding: "0"
+    padding: "0 4rem",
+    [sizes.down("md")]: {
+      padding: "0",
+      height: "64px"
     }
   },
   btnNormal: {

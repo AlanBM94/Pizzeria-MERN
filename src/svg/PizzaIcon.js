@@ -1,12 +1,18 @@
 import React from "react";
+import { withStyles } from "@material-ui/styles";
 
-const PizzaIcon = () => {
+import styles from "./PizzaIconStyles";
+
+const PizzaIcon = props => {
+  const { classes } = props;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="417"
       height="417"
       viewBox="0 0 417 417"
+      className={`${classes.Icon} rotating`}
     >
       <g id="Grupo_12" data-name="Grupo 12" transform="translate(-1289 -543)">
         <circle
@@ -120,4 +126,4 @@ const PizzaIcon = () => {
   );
 };
 
-export default PizzaIcon;
+export default withStyles(styles)(PizzaIcon);

@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Navigation from "./shared/components/Navigation/Navigation";
-import Hero from "./shared/components/Hero/Hero";
+import Main from "../src/pages/Main";
+import Navigation from "../src/components/shared/Navigation/Navigation";
 import "./App.css";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Navigation />
       <Switch>
         <Route path="/" exact>
-          <Hero />
+          <Main />
         </Route>
         <Route path="/pizzas" exact>
           pizzas
