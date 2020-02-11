@@ -20,18 +20,18 @@ const Gallery = props => {
   const { classes } = props;
   return (
     <div className={classes.gallery}>
-      <GalleryItem image={pizza1} className={classes.galleryItem1} />
+      <GalleryItem image={bebida4} className={classes.galleryItem1} />
       <GalleryItem image={pizza2} className={classes.galleryItem2} />
       <GalleryItem image={pizza3} className={classes.galleryItem3} />
       <GalleryItem image={pizza4} className={classes.galleryItem4} />
       <GalleryItem image={pasta1} className={classes.galleryIte5} />
       <GalleryItem image={pasta2} className={classes.galleryItem6} />
-      <GalleryItem image={pasta3} className={classes.galleryItem7} />
-      <GalleryItem image={pasta4} className={classes.galleryItem8} />
-      <GalleryItem image={bebida1} className={classes.galleryItem9} />
+      <GalleryItem image={bebida1} className={classes.galleryItem7} />
+      <GalleryItem image={bebida3} className={classes.galleryItem8} />
+      <GalleryItem image={pasta3} className={classes.galleryItem9} />
       <GalleryItem image={bebida2} className={classes.galleryItem10} />
-      <GalleryItem image={bebida3} className={classes.galleryItem11} />
-      <GalleryItem image={bebida4} className={classes.galleryItem13} />
+      <GalleryItem image={pasta4} className={classes.galleryItem11} />
+      <GalleryItem image={pizza1} className={classes.galleryItem13} />
     </div>
   );
 };

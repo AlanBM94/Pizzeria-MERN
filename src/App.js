@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import Main from "../src/pages/Main";
 import Navigation from "../src/components/shared/Navigation/Navigation";
+import Footer from "../src/components/Footer/Footer";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         </Route>
         <Redirect to="/" exact />
       </Switch>
+      <Footer />
     </div>
   );
 }

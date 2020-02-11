@@ -6,7 +6,7 @@ import styles from "./GalleryItemStyles.js";
 const GalleryItem = props => {
   const { classes } = props;
   return (
-    <div>
+    <div className={classes.imageContainer}>
       <img src={props.image} />
     </div>
   );
