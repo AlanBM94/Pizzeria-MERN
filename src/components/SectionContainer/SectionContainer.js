@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
 
+import Gallery from "../Gallery/Gallery";
 import Tomato from "../../images/Tomato";
 import Testimonial from "../Testimonial/Testimonial";
 import styles from "./SectionContainerStyles";
@@ -34,22 +35,17 @@ const SectionContainer = props => {
     </>
   );
 
-  const location = (
-    <>
-      <div className={classes.leftSideLocation}>here is the form</div>
-      <div className={classes.leftSideLocation}>here is the map</div>
-    </>
-  );
+  const gallery = <Gallery />;
 
   const selectType = type => {
     if (type === "ingredients") return ingredients;
     if (type === "testimonials") return testimonial;
-    if (type === "location") return location;
+    if (type === "gallery") return gallery;
   };
 
   const selectClassName = (type, classes) => {
     if (type === "testimonials") return classes.testimonials;
-    if (type === "location") return classes.location;
+    if (type === "gallery") return classes.gallery;
   };
 
   return (

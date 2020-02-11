@@ -9,6 +9,7 @@ const Main = () => {
       <Hero />
       <SectionContainer type="ingredients" />
       <SectionContainer type="testimonials" />
+      <SectionContainer type="gallery" />
     </>
   );
 };
