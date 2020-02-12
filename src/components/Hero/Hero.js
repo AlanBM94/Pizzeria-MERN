@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import PizzaIcon from "../../svg/PizzaIcon";
 
@@ -14,7 +15,9 @@ const Hero = props => {
           <h2>Las mejores pizzas</h2>
           <span> con los ingredientes más selectos.</span>
         </div>
-        <Button>Ubicación</Button>
+        <Link to="/ubicacion">
+          <Button>Ubicación</Button>
+        </Link>
       </div>
       <div className={classes.heroImagen} style={{ color: "white" }}>
         <PizzaIcon />

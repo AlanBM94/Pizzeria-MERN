@@ -20,6 +20,11 @@ const styles = {
     padding: "6rem 5.5rem 0 5.5rem",
     display: "flex",
     flexDirection: "column",
+    "& a": {
+      width: "215px",
+      display: "flex",
+      textDecoration: "none"
+    },
     [sizes.down("md")]: {
       padding: "3rem 5.5rem",
       width: "100%"
@@ -30,7 +35,7 @@ const styles = {
     },
     "& button": {
       marginTop: "5rem",
-      maxWidth: "15rem",
+      width: "100%",
       color: white,
       background: "transparent",
       border: `2px solid ${primary}`,

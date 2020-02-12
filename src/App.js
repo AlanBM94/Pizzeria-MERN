@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Main from "../src/pages/Main";
 import Navigation from "../src/components/shared/Navigation/Navigation";
 import Footer from "../src/components/Footer/Footer";
+import Auth from "../src/components/Auth/Auth";
 import "./App.css";
 
 function App() {
@@ -23,11 +24,14 @@ function App() {
         <Route path="/bebidas" exact>
           bebidas
         </Route>
+        <Route path="/ubicacion" exact>
+          ubicacion
+        </Route>
         <Route path="/iniciarSesion" exact>
-          iniciar sesión
+          <Auth />
         </Route>
         <Route path="/registrarse" exact>
-          registrarse
+          <Auth />
         </Route>
         <Redirect to="/" exact />
       </Switch>
