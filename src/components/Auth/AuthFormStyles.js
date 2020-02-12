@@ -30,6 +30,11 @@ const styles = {
     background: gray,
     width: "80%",
     height: "25rem",
+    "& a": {
+      textDecoration: "none",
+      color: primary,
+      fontWeight: "700"
+    },
     "& form": {
       height: "70%",
       padding: " 2rem 4rem",

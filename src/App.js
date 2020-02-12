@@ -2,9 +2,8 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Main from "../src/pages/Main";
+import Auth from "./pages/Auth";
 import Navigation from "../src/components/shared/Navigation/Navigation";
-import Footer from "../src/components/Footer/Footer";
-import Auth from "../src/components/Auth/Auth";
 import "./App.css";
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
         </Route>
         <Redirect to="/" exact />
       </Switch>
-      <Footer />
     </div>
   );
 }
