@@ -53,6 +53,13 @@ const styles = {
           outline: "none",
           borderBottom: `2px solid ${primary}`
         }
+      },
+      "& p": {
+        fontSize: "0.8rem",
+        fontWeight: "700",
+        color: "#f3163f",
+        margin: "0",
+        padding: "0"
       }
     }
   },
