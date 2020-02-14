@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import Main from "../src/pages/Main";
 import Auth from "./pages/Auth";
-import Navigation from "../src/components/shared/Navigation/Navigation";
+import Location from "./components/Location/Location";
 import { FormModeContext } from "../src/components/shared/context/formModeContext";
 import "./App.css";
 
@@ -27,7 +27,6 @@ function App() {
           signUpFormHandler: signUpFormHandler
         }}
       >
-        <Navigation />
         <Switch>
           <Route path="/" exact>
             <Main />
@@ -42,7 +41,7 @@ function App() {
             bebidas
           </Route>
           <Route path="/ubicacion" exact>
-            ubicacion
+            <Location />
           </Route>
           <Route path="/auth" exact>
             <Auth />

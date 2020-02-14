@@ -17,12 +17,13 @@ const styles = {
     background: `${gray}!important`
   },
   formContainer: {
-    height: "calc(100vh - 140px)",
+    height: "100vh",
     margin: "0",
     padding: "0",
     width: "25rem",
     margin: "0 auto",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     [sizes.down("xs")]: {
@@ -33,6 +34,20 @@ const styles = {
     background: gray,
     width: "80%",
     height: "25rem",
+    position: "relative",
+    "& a:nth-child(1)": {
+      position: "absolute",
+      top: "-3rem",
+      left: "4.5rem",
+      textDecoration: "none",
+      fontFamily: "Noto Serif",
+      fontWeight: "700",
+      fontSize: "1.5rem",
+      color: black,
+      [sizes.down("xs")]: {
+        left: "17%"
+      }
+    },
     "& a": {
       textDecoration: "none",
       color: primary,

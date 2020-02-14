@@ -46,6 +46,7 @@ const Auth = props => {
         className={`${classes.form} ${authFormMode === "signUp" &&
           `${classes.formSignUp}`}`}
       >
+      <Link to="/">Pizzeria-MERN</Link>
         <div className={classes.formNav}>
           <button
             className={authFormMode === "logIn" && classes.activeButton}

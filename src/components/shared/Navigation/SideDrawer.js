@@ -19,12 +19,12 @@ const SideDrawer = props => {
     >
       <div className={classes.sideDrawer}>
         <SimpleMenu responsive={true} closeResponsiveMenu={props.onClick} />
-        <Link to="/iniciarSesion">
+        <Link to="/auth">
           <Button className={classes.btnNavResponsive} onClick={props.onClick}>
             Iniciar Sesión
           </Button>
         </Link>
-        <Link to="/registrarse">
+        <Link to="/auth">
           <Button
             variant="contained"
             className={classes.btnNavResponsive}

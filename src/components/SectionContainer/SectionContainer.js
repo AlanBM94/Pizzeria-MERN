@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/styles";
 import Gallery from "../Gallery/Gallery";
 import Tomato from "../../images/Tomato";
 import Testimonial from "../Testimonial/Testimonial";
+import LocationDesign from "../Location/LocationDesign";
 import styles from "./SectionContainerStyles";
 
 const SectionContainer = props => {
@@ -37,10 +38,13 @@ const SectionContainer = props => {
 
   const gallery = <Gallery />;
 
+  const locationDesign = <LocationDesign />;
+
   const selectType = type => {
     if (type === "ingredients") return ingredients;
     if (type === "testimonials") return testimonial;
     if (type === "gallery") return gallery;
+    if (type === "locationDesign") return locationDesign;
   };
 
   const selectClassName = (type, classes) => {
