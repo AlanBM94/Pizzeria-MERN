@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 
+import { FormModeContext } from "../shared/context/formModeContext";
 import Input from "../shared/FormComponents/Input";
 import { useForm } from "../shared/hooks/useForm";
 import {
@@ -12,7 +13,11 @@ import {
 import styles from "./AuthFormStyles";
 
 const Auth = props => {
+  const formContext = useContext(FormModeContext);
   const { classes } = props;
+  const [authFormMode, setAuthFormMode] = useState(
+    formContext.formMode || "logIn"
+  );
   const [formState, inputHandler] = useForm(
     {
       email: {
@@ -26,14 +31,53 @@ const Auth = props => {
     },
     false
   );
+
+  const loginFormHandler = () => {
+    setAuthFormMode("logIn");
+  };
+
+  const signUpFormHandler = () => {
+    setAuthFormMode("signUp");
+  };
+
   return (
     <div className={classes.formContainer}>
-      <div className={classes.form}>
+      <div
+        className={`${classes.form} ${authFormMode === "signUp" &&
+          `${classes.formSignUp}`}`}
+      >
         <div className={classes.formNav}>
-          <button className={classes.activeButton}>Iniciar Sesión</button>
-          <button>Registrarse</button>
+          <button
+            className={authFormMode === "logIn" && classes.activeButton}
+            onClick={
+              authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
+            }
+            disabled={authFormMode === "logIn"}
+          >
+            Iniciar Sesión
+          </button>
+          <button
+            onClick={
+              authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
+            }
+            disabled={authFormMode === "signUp"}
+            className={authFormMode === "signUp" && classes.activeButton}
+          >
+            Registrarse
+          </button>
         </div>
         <form>
+          {authFormMode === "signUp" && (
+            <Input
+              type="text"
+              placeholder="nombre"
+              id="nombre"
+              typeElement="input"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Este campo es requerido"
+              onInput={inputHandler}
+            />
+          )}
           <Input
             type="text"
             placeholder="email"
@@ -52,11 +96,30 @@ const Auth = props => {
             errorText="Ingresa una contraseña valida, al menos 5 caracteres."
             onInput={inputHandler}
           />
+          {authFormMode === "signUp" && (
+            <Input
+              type="password"
+              placeholder="confirmar contraseña"
+              id="passwordConfirm"
+              typeElement="input"
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
+              errorText="Ingresa una contraseña valida, al menos 5 caracteres."
+              onInput={inputHandler}
+            />
+          )}
           <Button className={classes.formButton} disabled={!formState.isValid}>
-            Iniciar sesión
+            {authFormMode === "logIn" ? "Iniciar sesión" : "Registrarse"}
           </Button>
         </form>
-        <Link to="/registrarse">Ya tienes cuenta?</Link>
+        <Link
+          onClick={
+            authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
+          }
+        >
+          {authFormMode === "logIn"
+            ? "Aún no tienes cuenta?"
+            : "Ya tienes cuenta?"}
+        </Link>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import sizes from "../../styles/sizes/sizez";
 import colors from "../../styles/colors/colors";
 
-const { black, white, primary, gray } = colors;
+const { black, white, primary, gray, red } = colors;
 
 const styles = {
   formButton: {
@@ -24,7 +24,10 @@ const styles = {
     margin: "0 auto",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    [sizes.down("xs")]: {
+      width: "20rem"
+    }
   },
   form: {
     background: gray,
@@ -57,14 +60,22 @@ const styles = {
       "& p": {
         fontSize: "0.8rem",
         fontWeight: "700",
-        color: "#f3163f",
+        color: red,
         margin: "0",
         padding: "0"
       }
     }
   },
+  formSignUp: {
+    height: "30rem",
+    marginTop: "5rem",
+    "& form": {
+      height: "75%",
+      padding: "1rem 4rem"
+    }
+  },
   formNav: {
-    height: "15%",
+    height: "3.5rem",
     display: "flex",
     background: primary,
     "& button": {

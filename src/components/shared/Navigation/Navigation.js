@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
+import { FormModeContext } from "../context/formModeContext";
 import SimpleMenu from "../Menu/Menu";
 import SideDrawer from "./SideDrawer";
 import BackDrop from "../UIElements/Backdrop";
@@ -15,6 +16,7 @@ import styles from "./NavigationStyles";
 function ButtonAppBar(props) {
   const { classes } = props;
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const formContext = useContext(FormModeContext);
 
   const openResponsiveMenu = () => {
     setDrawerIsOpen(true);
@@ -44,15 +46,20 @@ function ButtonAppBar(props) {
             responsive={false}
             closeResponsiveMenu={closeResponsiveMenu}
           />
-          <Link to="/iniciarSesion">
+          <Link to="/auth">
             <Button
               className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
+              onClick={formContext.logInFormHandler}
             >
               Iniciar Sesión
             </Button>
           </Link>
-          <Link to="/registrarse">
-            <Button variant="contained" className={classes.fullButton}>
+          <Link to="/auth">
+            <Button
+              variant="contained"
+              className={classes.fullButton}
+              onClick={formContext.signUpFormHandler}
+            >
               Registrarse
             </Button>
           </Link>
