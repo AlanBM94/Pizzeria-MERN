@@ -23,7 +23,10 @@ const styles = {
     "& a": {
       width: "215px",
       display: "flex",
-      textDecoration: "none"
+      textDecoration: "none",
+      [sizes.down("md")]: {
+        margin: "0 auto"
+      }
     },
     [sizes.down("md")]: {
       padding: "3rem 5.5rem",
