@@ -50,6 +50,7 @@ const SectionContainer = props => {
   const selectClassName = (type, classes) => {
     if (type === "testimonials") return classes.testimonials;
     if (type === "gallery") return classes.gallery;
+    if (type === "locationDesign") return classes.locationDesign;
   };
 
   return (

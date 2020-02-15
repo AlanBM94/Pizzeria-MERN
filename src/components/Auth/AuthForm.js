@@ -40,35 +40,34 @@ const Auth = props => {
     setAuthFormMode("signUp");
   };
 
+  const authFormModeSignUp = authFormMode === "signUp";
+  const authFormModeLogIn = authFormMode === "logIn";
+
   return (
     <div className={classes.formContainer}>
       <div
-        className={`${classes.form} ${authFormMode === "signUp" &&
+        className={`${classes.form} ${authFormModeSignUp &&
           `${classes.formSignUp}`}`}
       >
-      <Link to="/">Pizzeria-MERN</Link>
+        <Link to="/">Pizzeria-MERN</Link>
         <div className={classes.formNav}>
           <button
-            className={authFormMode === "logIn" && classes.activeButton}
-            onClick={
-              authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
-            }
-            disabled={authFormMode === "logIn"}
+            className={authFormModeLogIn && classes.activeButton}
+            onClick={authFormModeLogIn ? signUpFormHandler : loginFormHandler}
+            disabled={authFormModeLogIn}
           >
             Iniciar Sesión
           </button>
           <button
-            onClick={
-              authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
-            }
-            disabled={authFormMode === "signUp"}
-            className={authFormMode === "signUp" && classes.activeButton}
+            onClick={authFormModeLogIn ? signUpFormHandler : loginFormHandler}
+            disabled={authFormModeSignUp}
+            className={authFormModeSignUp && classes.activeButton}
           >
             Registrarse
           </button>
         </div>
         <form>
-          {authFormMode === "signUp" && (
+          {authFormModeSignUp && (
             <Input
               type="text"
               placeholder="nombre"
@@ -97,7 +96,7 @@ const Auth = props => {
             errorText="Ingresa una contraseña valida, al menos 5 caracteres."
             onInput={inputHandler}
           />
-          {authFormMode === "signUp" && (
+          {authFormModeSignUp && (
             <Input
               type="password"
               placeholder="confirmar contraseña"
@@ -109,17 +108,13 @@ const Auth = props => {
             />
           )}
           <Button className={classes.formButton} disabled={!formState.isValid}>
-            {authFormMode === "logIn" ? "Iniciar sesión" : "Registrarse"}
+            {authFormModeLogIn ? "Iniciar sesión" : "Registrarse"}
           </Button>
         </form>
         <Link
-          onClick={
-            authFormMode === "logIn" ? signUpFormHandler : loginFormHandler
-          }
+          onClick={authFormModeLogIn ? signUpFormHandler : loginFormHandler}
         >
-          {authFormMode === "logIn"
-            ? "Aún no tienes cuenta?"
-            : "Ya tienes cuenta?"}
+          {authFormModeLogIn ? "Aún no tienes cuenta?" : "Ya tienes cuenta?"}
         </Link>
       </div>
     </div>

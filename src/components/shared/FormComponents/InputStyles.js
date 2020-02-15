@@ -15,6 +15,9 @@ const styles = {
       outline: "none",
       borderBottom: `2px solid ${primary}`
     }
+  },
+  formControl: {
+    width: "10rem"
   }
 };
 

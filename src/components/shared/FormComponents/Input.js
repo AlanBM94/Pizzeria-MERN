@@ -1,5 +1,9 @@
 import React, { useReducer, useEffect } from "react";
 import { withStyles } from "@material-ui/styles";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 import { validate } from "../utils/validator";
 import styles from "./InputStyles";
@@ -72,6 +76,19 @@ const Input = props => {
         onBlur={touchHandler}
         value={value}
       />
+    );
+  } else if (typeElement === "select") {
+    element = (
+      <FormControl variant="filled" className={classes.formControl}>
+        <InputLabel htmlFor={id}>Ubicación</InputLabel>
+        <Select onChange={changeHandler} value={value} id={id} type={type}>
+          {props.locations.map(location => (
+            <MenuItem key={location.val} value={location.val}>
+              {location.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     );
   } else {
     element = (

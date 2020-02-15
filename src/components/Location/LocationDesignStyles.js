@@ -9,11 +9,13 @@ const styles = {
     width: "55%",
     clipPath: "polygon(0 0, 100% 0%, 75% 100%, 0% 100%);",
     background: gray,
+    overflow: "hidden",
     [sizes.down("md")]: {
       clipPath: "none",
       display: "flex",
       justifyContent: "center",
-      alignItems: "flex-end"
+      alignItems: "flex-end",
+      width: "100%"
     },
     [sizes.down("xs")]: {
       height: "45%"
@@ -28,6 +30,11 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+    [sizes.down("md")]: {
+      width: "100%",
+      margin: "0",
+      background: gray
+    },
     "& h2": {
       margin: "0",
       color: black,
@@ -42,11 +49,6 @@ const styles = {
       "&:hover": {
         background: primary
       }
-    }
-  },
-  formControl: {
-    "& div": {
-      width: "10rem"
     }
   }
 };

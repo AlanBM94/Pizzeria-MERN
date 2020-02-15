@@ -68,6 +68,11 @@ const styles = {
     background: white,
     display: "flex",
     justifyContent: "space-between"
+  },
+  locationDesign: {
+    [sizes.down("md")]: {
+      height: "60rem"
+    }
   }
 };
 
