@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/styles";
 
 import Navigation from "../shared/Navigation/Navigation";
 import SectionContainer from "../SectionContainer/SectionContainer";
-import Footer from "../Footer/Footer";
+import Footer from "../shared/Footer/Footer";
 import styles from "./LocationStyles";
 
 const Location = () => {

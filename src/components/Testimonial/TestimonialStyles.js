@@ -56,6 +56,8 @@ const styles = {
     "& p": {
       color: black,
       fontSize: "1rem",
+      fontFamily: "Open Sans",
+      fontWeight: "700",
       [sizes.down("md")]: {
         fontSize: "0.8rem",
         margin: "0"

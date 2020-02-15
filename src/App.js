@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Main from "../src/pages/Main";
 import Auth from "./pages/Auth";
 import Location from "./components/Location/Location";
+import FoodMenu from "./pages/FoodMenu";
 import { FormModeContext } from "../src/components/shared/context/formModeContext";
 import "./App.css";
 
@@ -32,13 +33,13 @@ function App() {
             <Main />
           </Route>
           <Route path="/pizzas" exact>
-            pizzas
+            <FoodMenu type="pizzas" />
           </Route>
           <Route path="/pastas" exact>
-            pastas
+            <FoodMenu type="pastas" />
           </Route>
           <Route path="/bebidas" exact>
-            bebidas
+            <FoodMenu type="bebidas" />
           </Route>
           <Route path="/ubicacion" exact>
             <Location />

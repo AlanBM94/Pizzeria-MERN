@@ -2,7 +2,7 @@ import React from "react";
 
 import Hero from "../components/Hero/Hero";
 import Navigation from "../components/shared/Navigation/Navigation";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/shared/Footer/Footer";
 import SectionContainer from "../components/SectionContainer/SectionContainer";
 const Main = () => {
   return (
