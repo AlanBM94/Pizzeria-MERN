@@ -49,7 +49,7 @@ const styles = {
       fontFamily: "Noto Serif",
       fontSize: "1.2rem"
     },
-    "& button": {
+    "& button:last-child ": {
       width: "40%",
       background: primary,
       color: black,
