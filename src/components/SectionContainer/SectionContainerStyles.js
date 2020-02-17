@@ -70,6 +70,7 @@ const styles = {
     justifyContent: "space-between"
   },
   locationDesign: {
+    height: "35rem",
     [sizes.down("md")]: {
       height: "60rem"
     }

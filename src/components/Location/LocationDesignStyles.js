@@ -1,7 +1,7 @@
 import sizes from "../../styles/sizes/sizez";
 import colors from "../../styles/colors/colors";
 
-const { black, white, primary, gray } = colors;
+const { black, white, primary, gray, red } = colors;
 
 const styles = {
   locationMap: {
@@ -23,13 +23,21 @@ const styles = {
   },
   locationForm: {
     background: white,
-    height: "80%",
+    minHeight: "80%",
     width: "30%",
     marginLeft: "5%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+    "& div div input": {
+      border: "none",
+      height: "2rem",
+      width: "80%",
+      background: gray,
+      color: black,
+      padding: "1rem"
+    },
     [sizes.down("md")]: {
       width: "100%",
       margin: "0",
@@ -49,6 +57,17 @@ const styles = {
       "&:hover": {
         background: primary
       }
+    },
+    "& input": {
+      background: gray,
+      width: "50%"
+    },
+    "& p": {
+      color: red,
+      fontSize: "0.8rem",
+      height: "1rem",
+      fontWeight: "700",
+      marginTop: "-2rem"
     }
   }
 };

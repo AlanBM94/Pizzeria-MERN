@@ -34,6 +34,7 @@ const Input = props => {
     initialValue,
     initialIsValid,
     errorText,
+    disabled,
     validators,
     classes
   } = props;
@@ -75,16 +76,17 @@ const Input = props => {
         className={classes.Input}
         onBlur={touchHandler}
         value={value}
+        disabled={disabled}
       />
     );
   } else if (typeElement === "select") {
     element = (
       <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel htmlFor={id}>Ubicación</InputLabel>
+        <InputLabel htmlFor={id}>{props.title}</InputLabel>
         <Select onChange={changeHandler} value={value} id={id} type={type}>
-          {props.locations.map(location => (
-            <MenuItem key={location.val} value={location.val}>
-              {location.name}
+          {props.items.map(item => (
+            <MenuItem key={item} value={item}>
+              {item}
             </MenuItem>
           ))}
         </Select>
