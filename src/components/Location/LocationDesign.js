@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import { VALIDATOR_REQUIRE } from "../shared/utils/validator";
 import Input from "../shared/FormComponents/Input";
@@ -12,9 +10,17 @@ import styles from "./LocationDesignStyles";
 
 const LocationDesign = props => {
   const { classes } = props;
-  const [formState, inputHandler] = useForm(
+  const [formState, inputHandler, setFormData] = useForm(
     {
       location: {
+        value: "",
+        isValid: false
+      },
+      numberOfPeople: {
+        value: "",
+        isValid: false
+      },
+      dateAndTime: {
         value: "",
         isValid: false
       }
@@ -23,15 +29,35 @@ const LocationDesign = props => {
   );
 
   const [isLocationForm, setIsLocationForm] = useState(true);
-  const [locationValue, setLocationValue] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
 
   const locations = ["Iztacalco", "Gustavo A Madero", "Nezahualcoyotl"];
 
-  const submitLocationForm = e => {
+  const submitReservationHandler = e => {
     e.preventDefault();
-    setLocationValue(formState.inputs.location.value);
+    console.log(formState);
+  };
+
+  const changeDateHandler = date => {
+    console.log(date, '"jajajajajajejejejjijijiji"');
+    formState.inputs.dateAndTime.value = date;
+    formState.inputs.dateAndTime.isValid = true;
+  };
+
+  const selectLocationHandler = () => {
     setIsLocationForm(false);
+    setFormData(
+      {
+        ...formState.inputs,
+        numberOfPeople: { value: "", isValid: false },
+        dateAndTime: {
+          value: "",
+          isValid: false
+        }
+      },
+      formState.inputs.location.isValid &&
+        formState.inputs.numberOfPeople.isValid &&
+        formState.inputs.dateAndTime.isValid
+    );
   };
 
   return (
@@ -39,7 +65,10 @@ const LocationDesign = props => {
       <div className={classes.locationMap}>
         <Map center={{ lat: 48.8583701, lng: 2.2922926 }} zoom={15} />
       </div>
-      <form className={classes.locationForm} onSubmit={submitLocationForm}>
+      <form
+        className={classes.locationForm}
+        onSubmit={submitReservationHandler}
+      >
         <h2>
           {isLocationForm
             ? "Busca tu pizzeria más cercana"
@@ -59,39 +88,38 @@ const LocationDesign = props => {
 
         {!isLocationForm && (
           <>
-            <Input
-              typeElement="input"
-              onInput={inputHandler}
-              validators={[VALIDATOR_REQUIRE]}
-              errorText="El correo electrónico es necesario"
-              placeholder={locationValue}
-              id="email"
-              disabled
-            />
+            <span>{formState.inputs.location.value}</span>
             <Input
               typeElement="select"
               onInput={inputHandler}
               validators={[VALIDATOR_REQUIRE]}
               errorText="Debes de ingresar un número de personas"
-              id="numeroPersonas"
+              id="numberOfPeople"
               items={[1, 2, 3, 4, 5]}
               title="#Personas"
             />
-
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="time"
-              dateFormat="MMMM d, yyyy h:mm aa"
+            <Input
+              typeElement="dateAndTime"
+              onInput={inputHandler}
+              validators={[VALIDATOR_REQUIRE]}
+              errorText="Debes de ingresar fecha y hora"
+              id="dateAndTime"
             />
           </>
         )}
-        <Button disabled={!formState.isValid} type="submit">
-          {isLocationForm ? "Buscar" : "Reservar"}
-        </Button>
+        {isLocationForm ? (
+          <Button
+            type="button"
+            onClick={selectLocationHandler}
+            disabled={formState.inputs.location.value === ""}
+          >
+            Buscar
+          </Button>
+        ) : (
+          <Button type="submit" disabled={!formState.isValid}>
+            Reservar
+          </Button>
+        )}
       </form>
     </>
   );

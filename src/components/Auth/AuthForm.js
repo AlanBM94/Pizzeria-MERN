@@ -40,6 +40,15 @@ const Auth = props => {
     setAuthFormMode("signUp");
   };
 
+  const submitFormHandler = e => {
+    e.preventDefault();
+    if (
+      formState.inputs.password.value !== formState.inputs.confirmPassword.value
+    ) {
+      alert("Las contraseñas no son iguales");
+    }
+  };
+
   const authFormModeSignUp = authFormMode === "signUp";
   const authFormModeLogIn = authFormMode === "logIn";
 
@@ -66,7 +75,7 @@ const Auth = props => {
             Registrarse
           </button>
         </div>
-        <form>
+        <form onSubmit={submitFormHandler}>
           {authFormModeSignUp && (
             <Input
               type="text"
@@ -92,22 +101,26 @@ const Auth = props => {
             placeholder="contraseña"
             id="password"
             typeElement="input"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
-            errorText="Ingresa una contraseña valida, al menos 5 caracteres."
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(6)]}
+            errorText="Ingresa una contraseña valida, al menos 6 caracteres."
             onInput={inputHandler}
           />
           {authFormModeSignUp && (
             <Input
               type="password"
               placeholder="confirmar contraseña"
-              id="passwordConfirm"
+              id="confirmPassword"
               typeElement="input"
-              validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
-              errorText="Ingresa una contraseña valida, al menos 5 caracteres."
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(6)]}
+              errorText="Ingresa una contraseña valida, al menos 6 caracteres."
               onInput={inputHandler}
             />
           )}
-          <Button className={classes.formButton} disabled={!formState.isValid}>
+          <Button
+            className={classes.formButton}
+            disabled={!formState.isValid}
+            type="submit"
+          >
             {authFormModeLogIn ? "Iniciar sesión" : "Registrarse"}
           </Button>
         </form>

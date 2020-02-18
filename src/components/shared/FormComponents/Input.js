@@ -4,6 +4,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { validate } from "../utils/validator";
 import styles from "./InputStyles";
@@ -18,6 +20,7 @@ const inputReducer = (state, action) => {
         ...state,
         isTouched: true
       };
+
     default:
       return state;
   }
@@ -59,6 +62,14 @@ const Input = props => {
     });
   };
 
+  const changeDateAndTime = date => {
+    dispatch({
+      type: "CHANGE",
+      value: date,
+      validators: validators
+    });
+  };
+
   const touchHandler = () => {
     dispatch({ type: "TOUCH" });
   };
@@ -91,6 +102,20 @@ const Input = props => {
           ))}
         </Select>
       </FormControl>
+    );
+  } else if (typeElement === "dateAndTime") {
+    element = (
+      <DatePicker
+        selected={value || new Date()}
+        placeholder={new Date()}
+        onChange={changeDateAndTime}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={30}
+        timeCaption="time"
+        dateFormat="MMMM d, yyyy h:mm aa"
+        id={id}
+      />
     );
   } else {
     element = (
