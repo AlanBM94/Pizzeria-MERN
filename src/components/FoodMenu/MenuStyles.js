@@ -1,7 +1,7 @@
 // import sizes from "../../../styles/sizes/sizez";
-// import colors from "../../../styles/colors/colors";
+import colors from "../../styles/colors/colors";
 
-// const { black, white, primary, gray } = colors;
+const { black, white, primary, gray } = colors;
 
 const styles = {
   container: {
@@ -15,6 +15,13 @@ const styles = {
       fontSize: "2rem",
       fontWeight: "700"
     }
+  },
+  cardsContainer: {
+    width: "100%",
+    height: "40rem",
+    marginTop: "4rem",
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 

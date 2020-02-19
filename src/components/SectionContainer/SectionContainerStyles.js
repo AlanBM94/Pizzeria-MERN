@@ -56,6 +56,7 @@ const styles = {
       fontSize: "1rem",
       fontWeight: "400",
       marginTop: "-1rem",
+      lineHeight: "1.8",
       [sizes.down("md")]: {
         width: "80%"
       },
