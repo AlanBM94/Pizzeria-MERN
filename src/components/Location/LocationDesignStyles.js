@@ -4,6 +4,12 @@ import colors from "../../styles/colors/colors";
 const { black, white, primary, gray, red } = colors;
 
 const styles = {
+  disabledButton: {
+    opacity: 0.6
+  },
+  activeButton: {
+    opacity: 1
+  },
   locationMap: {
     height: "100%",
     width: "55%",
@@ -30,6 +36,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+
     "& div div input": {
       border: "none",
       height: "2rem",

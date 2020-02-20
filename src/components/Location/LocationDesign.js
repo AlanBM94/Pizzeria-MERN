@@ -32,13 +32,14 @@ const LocationDesign = props => {
 
   const locations = ["Iztacalco", "Gustavo A Madero", "Nezahualcoyotl"];
 
+  const noLocationValue = formState.inputs.location.value === "";
+
   const submitReservationHandler = e => {
     e.preventDefault();
     console.log(formState);
   };
 
   const changeDateHandler = date => {
-    console.log(date, '"jajajajajajejejejjijijiji"');
     formState.inputs.dateAndTime.value = date;
     formState.inputs.dateAndTime.isValid = true;
   };
@@ -111,12 +112,21 @@ const LocationDesign = props => {
           <Button
             type="button"
             onClick={selectLocationHandler}
-            disabled={formState.inputs.location.value === ""}
+            disabled={noLocationValue}
+            className={
+              noLocationValue ? classes.disabledButton : classes.activeButton
+            }
           >
             Buscar
           </Button>
         ) : (
-          <Button type="submit" disabled={!formState.isValid}>
+          <Button
+            type="submit"
+            disabled={!formState.isValid}
+            className={
+              !formState.isValid ? classes.disabledButton : classes.activeButton
+            }
+          >
             Reservar
           </Button>
         )}

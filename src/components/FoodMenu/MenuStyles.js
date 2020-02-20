@@ -1,4 +1,4 @@
-// import sizes from "../../../styles/sizes/sizez";
+import sizes from "../../styles/sizes/sizez";
 import colors from "../../styles/colors/colors";
 
 const { black, white, primary, gray } = colors;
@@ -18,10 +18,14 @@ const styles = {
   },
   cardsContainer: {
     width: "100%",
-    height: "40rem",
-    marginTop: "4rem",
+    height: "100%",
+    marginTop: "1rem",
     display: "flex",
-    justifyContent: "space-between"
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    [sizes.down("sm")]: {
+      justifyContent: "center"
+    }
   }
 };
 

@@ -18,6 +18,8 @@ const Auth = props => {
   const [authFormMode, setAuthFormMode] = useState(
     formContext.formMode || "logIn"
   );
+  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [isSignUpForm, setIsSignUpForm] = useState(false);
   const [formState, inputHandler] = useForm(
     {
       email: {
