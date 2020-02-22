@@ -8,7 +8,7 @@ const styles = {
   modal: {
     zIndex: "100",
     position: "fixed",
-    top: "22vh",
+    top: "15vh",
     left: "10%",
     width: "80%",
     background: white,

@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
 
-import Card from "../shared/Card/Card";
+import Card from "../shared/UIElements/Card";
 import styles from "./MenuStyles";
 import pizza1 from "../../images/pizza-1.jpg";
 import pizza2 from "../../images/pizza-2.jpg";
