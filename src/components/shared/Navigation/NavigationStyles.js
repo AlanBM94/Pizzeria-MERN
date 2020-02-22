@@ -60,7 +60,7 @@ const styles = {
   logo: {
     textDecoration: "none",
     color: white,
-    fontFamily: "Noto Serif",
+    fontFamily: "Oswald",
     fontWeight: "700"
   },
   btnBurguer: {

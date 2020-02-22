@@ -22,10 +22,8 @@ const styles = {
     "&:hover div:nth-child(2)": {
       transform: "rotateY(0)"
     },
-
     [sizes.down("md")]: {
-      width: "10rem",
-      height: "15rem"
+      margin: "3rem 1rem"
     }
   },
   side: {

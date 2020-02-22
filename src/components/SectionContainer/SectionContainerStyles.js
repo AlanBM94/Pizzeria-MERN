@@ -42,9 +42,9 @@ const styles = {
       padding: "0"
     },
     "& h2": {
-      fontFamily: "Noto Serif",
+      fontFamily: "Oswald",
       fontSize: "2.3rem",
-      fontWeight: "700",
+      fontWeight: "600",
       [sizes.down("md")]: {
         fontSize: "1.8rem"
       },

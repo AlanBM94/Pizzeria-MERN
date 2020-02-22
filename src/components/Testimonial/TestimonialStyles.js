@@ -1,7 +1,7 @@
 import sizes from "../../styles/sizes/sizez";
 import colors from "../../styles/colors/colors";
 
-const { white, black, primary, gray } = colors;
+const { white, black, primary, gray, shadow } = colors;
 
 const styles = {
   testimonial: {
@@ -11,7 +11,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     borderLeft: `6px solid ${primary}`,
-    boxShadow: `2px 2px 3px ${black}`,
+    boxShadow: `0 .5rem 1rem ${shadow}!important`,
     [sizes.down("md")]: {
       height: "8rem"
     },
@@ -57,7 +57,7 @@ const styles = {
       color: black,
       fontSize: "1rem",
       fontFamily: "Open Sans",
-      fontWeight: "700",
+      fontWeight: "600",
       [sizes.down("md")]: {
         fontSize: "0.8rem",
         margin: "0"

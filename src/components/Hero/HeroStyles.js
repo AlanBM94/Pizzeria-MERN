@@ -55,11 +55,11 @@ const styles = {
   },
   heroTexto: {
     "& h2": {
-      fontFamily: "Noto Serif",
+      fontFamily: "Oswald",
       textAlign: "left",
       color: white,
       fontSize: "3rem",
-      fontWeight: "700",
+      fontWeight: "600",
       [sizes.down("md")]: {
         fontSize: "2.5rem",
         textAlign: "center"

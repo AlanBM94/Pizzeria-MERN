@@ -38,9 +38,9 @@ const styles = {
     "& a:nth-child(1)": {
       position: "absolute",
       top: "-3rem",
-      left: "4.5rem",
+      left: "5.5rem",
       textDecoration: "none",
-      fontFamily: "Noto Serif",
+      fontFamily: "Oswald",
       fontWeight: "700",
       fontSize: "1.5rem",
       color: black,
@@ -51,7 +51,10 @@ const styles = {
     "& a": {
       textDecoration: "none",
       color: primary,
-      fontWeight: "700"
+      fontWeight: "700",
+      "&:hover": {
+        cursor: "pointer"
+      }
     },
     "& form": {
       height: "70%",

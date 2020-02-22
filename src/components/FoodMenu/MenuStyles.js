@@ -11,7 +11,7 @@ const styles = {
     "& h2": {
       margin: "0",
       marginTop: "1rem",
-      fontFamily: "Noto Serif",
+      fontFamily: "Oswald",
       fontSize: "2rem",
       fontWeight: "700"
     }

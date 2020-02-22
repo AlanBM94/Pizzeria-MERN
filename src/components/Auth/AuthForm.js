@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 
 import { FormModeContext } from "../shared/context/formModeContext";
+import { AuthContext } from "../shared/context/authContext";
 import Input from "../shared/FormComponents/Input";
 import { useForm } from "../shared/hooks/useForm";
 import {
@@ -14,13 +16,14 @@ import styles from "./AuthFormStyles";
 
 const Auth = props => {
   const formContext = useContext(FormModeContext);
+  const authContext = useContext(AuthContext);
   const { classes } = props;
   const [authFormMode, setAuthFormMode] = useState(
     formContext.formMode || "logIn"
   );
-  const [isLoginForm, setIsLoginForm] = useState(false);
-  const [isSignUpForm, setIsSignUpForm] = useState(false);
-  const [formState, inputHandler] = useForm(
+  const history = useHistory();
+
+  const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
         value: "",
@@ -35,19 +38,40 @@ const Auth = props => {
   );
 
   const loginFormHandler = () => {
+    formContext.logInFormHandler();
+    setFormData(
+      {
+        ...formState.inputs,
+        name: undefined,
+        confirmPassword: undefined
+      },
+      formState.inputs.email.isValid && formState.inputs.password.isValid
+    );
     setAuthFormMode("logIn");
   };
 
   const signUpFormHandler = () => {
+    formContext.signUpFormHandler();
     setAuthFormMode("signUp");
   };
 
   const submitFormHandler = e => {
     e.preventDefault();
     if (
-      formState.inputs.password.value !== formState.inputs.confirmPassword.value
+      formContext.formMode === "logIn" ||
+      Object.values(formState.inputs).length === 2
     ) {
-      alert("Las contraseñas no son iguales");
+      authContext.login();
+      history.push("/");
+    } else {
+      authContext.login();
+      history.push("/");
+      if (
+        formState.inputs.password.value !==
+        formState.inputs.confirmPassword.value
+      ) {
+        alert("Las contraseñas no son iguales");
+      }
     }
   };
 
@@ -82,7 +106,7 @@ const Auth = props => {
             <Input
               type="text"
               placeholder="nombre"
-              id="nombre"
+              id="name"
               typeElement="input"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Este campo es requerido"
@@ -126,11 +150,9 @@ const Auth = props => {
             {authFormModeLogIn ? "Iniciar sesión" : "Registrarse"}
           </Button>
         </form>
-        <Link
-          onClick={authFormModeLogIn ? signUpFormHandler : loginFormHandler}
-        >
+        <a onClick={authFormModeLogIn ? signUpFormHandler : loginFormHandler}>
           {authFormModeLogIn ? "Aún no tienes cuenta?" : "Ya tienes cuenta?"}
-        </Link>
+        </a>
       </div>
     </div>
   );

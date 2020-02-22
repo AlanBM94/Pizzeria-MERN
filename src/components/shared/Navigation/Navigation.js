@@ -6,7 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../context/authContext";
 import { FormModeContext } from "../context/formModeContext";
 import SimpleMenu from "../Menu/Menu";
 import SideDrawer from "./SideDrawer";
@@ -17,6 +17,7 @@ function ButtonAppBar(props) {
   const { classes } = props;
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const formContext = useContext(FormModeContext);
+  const authContext = useContext(AuthContext);
 
   const openResponsiveMenu = () => {
     setDrawerIsOpen(true);
@@ -46,23 +47,38 @@ function ButtonAppBar(props) {
             responsive={false}
             closeResponsiveMenu={closeResponsiveMenu}
           />
-          <Link to="/auth">
-            <Button
-              className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
-              onClick={formContext.logInFormHandler}
-            >
-              Iniciar Sesión
-            </Button>
-          </Link>
-          <Link to="/auth">
-            <Button
-              variant="contained"
-              className={classes.fullButton}
-              onClick={formContext.signUpFormHandler}
-            >
-              Registrarse
-            </Button>
-          </Link>
+          {!authContext.isLoggedIn && (
+            <Link to="/auth">
+              <Button
+                className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
+                onClick={formContext.logInFormHandler}
+              >
+                Iniciar Sesión
+              </Button>
+            </Link>
+          )}
+
+          {!authContext.isLoggedIn && (
+            <Link to="/auth">
+              <Button
+                variant="contained"
+                className={classes.fullButton}
+                onClick={formContext.signUpFormHandler}
+              >
+                Registrarse
+              </Button>
+            </Link>
+          )}
+
+          {authContext.isLoggedIn && (
+            <Link to="/auth">
+              <Button
+                className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
+              >
+                Cerrar Sesión
+              </Button>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </div>
