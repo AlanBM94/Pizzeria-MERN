@@ -37,9 +37,7 @@ const styles = {
     overflow: "hidden",
     transition: "all .6s ease"
   },
-  frontSide: {
-    background: "red"
-  },
+  frontSide: {},
   backSide: {
     position: "relative",
     transform: "rotateY(180deg)",
@@ -76,10 +74,7 @@ const styles = {
       fontSize: "0.9rem",
       fontWeight: "700",
       color: black,
-      textTransform: "uppercase",
-      [sizes.down("md")]: {
-        display: "none"
-      }
+      textTransform: "capitilize"
     },
     "& p:nth-child(2)": {
       fontSize: "0.9rem",
@@ -90,10 +85,6 @@ const styles = {
       transition: "all 0.3s ease",
       "&:hover": {
         opacity: "1"
-      },
-      [sizes.down("md")]: {
-        justifySelf: "center",
-        margin: "0 auto"
       }
     }
   }

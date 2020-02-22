@@ -14,6 +14,9 @@ const styles = {
       fontFamily: "Oswald",
       fontSize: "2rem",
       fontWeight: "700"
+    },
+    [sizes.down("xs")]: {
+      padding: "2rem 3rem"
     }
   },
   cardsContainer: {
