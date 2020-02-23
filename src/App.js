@@ -4,6 +4,9 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Main from "../src/pages/Main";
 import Auth from "./pages/Auth";
 import Location from "./components/Location/Location";
+// import Profile from "./pages/profile/Profile";
+import MyReservations from "./pages/profile/MyReservations";
+import MyComments from "./pages/profile/MyComments";
 import FoodMenu from "./pages/FoodMenu";
 import { AuthContext } from "../src/components/shared/context/authContext";
 import { FormModeContext } from "../src/components/shared/context/formModeContext";
@@ -58,6 +61,16 @@ function App() {
             <Route path="/auth" exact>
               <Auth />
             </Route>
+            {/* <Route path="/miPerfil" exact>
+              <Profile />
+            </Route> */}
+            <Route path="/misReservaciones" exact>
+              <MyReservations />
+            </Route>
+            <Route path="/misComentarios" exact>
+              <MyComments />
+            </Route>
+
             <Redirect to="/" exact />
           </Switch>
         </FormModeContext.Provider>

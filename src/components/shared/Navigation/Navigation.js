@@ -46,6 +46,7 @@ function ButtonAppBar(props) {
           <SimpleMenu
             responsive={false}
             closeResponsiveMenu={closeResponsiveMenu}
+            type="menu"
           />
           {!authContext.isLoggedIn && (
             <Link to="/auth">
@@ -71,11 +72,16 @@ function ButtonAppBar(props) {
           )}
 
           {authContext.isLoggedIn && (
-            <Link to="/auth">
-              <Button
-                className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
-              >
-                Cerrar Sesión
+            <SimpleMenu
+              responsive={false}
+              closeResponsiveMenu={closeResponsiveMenu}
+              type="profile"
+            />
+          )}
+          {authContext.isLoggedIn && (
+            <Link to="/ubicacion">
+              <Button variant="contained" className={classes.fullButton}>
+                Reservar
               </Button>
             </Link>
           )}

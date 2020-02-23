@@ -17,7 +17,7 @@ const styles = {
       padding: "0"
     },
     "& ul li:not(:first-child)": {
-      marginTop: "1rem"
+      marginTop: "2rem"
     }
   }
 };

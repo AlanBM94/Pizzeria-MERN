@@ -60,11 +60,31 @@ const Card = props => {
         footer={<Button onClick={closeCommentsHandler}>Cerrar</Button>}
       >
         <List onModal>
-          <ListItem content="Esta es una gran pizza" imageName="Alan" />
-          <ListItem content="Esta es una gran pizza" imageName="Alan" />
-          <ListItem content="Esta es una gran pizza" imageName="Alan" />
-          <ListItem content="Esta es una gran pizza" imageName="Alan" />
-          <ListItem content="Esta es una gran pizza" imageName="Alan" />
+          <ListItem
+            content="Esta es una gran pizza"
+            imageName="Alan"
+            type="comment"
+          />
+          <ListItem
+            content="Esta es una gran pizza"
+            imageName="Alan"
+            type="comment"
+          />
+          <ListItem
+            content="Esta es una gran pizza"
+            imageName="Alan"
+            type="comment"
+          />
+          <ListItem
+            content="Esta es una gran pizza"
+            imageName="Alan"
+            type="comment"
+          />
+          <ListItem
+            content="Esta es una gran pizza"
+            imageName="Alan"
+            type="comment"
+          />
         </List>
       </Modal>
       <Modal

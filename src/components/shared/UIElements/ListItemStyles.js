@@ -4,7 +4,7 @@ import sizes from "../../../styles/sizes/sizez";
 const { primary, black, gray, white, red } = colors;
 
 const styles = {
-  ListItem: {
+  listItem: {
     minHeight: "5rem",
     background: gray,
     width: "90%",
@@ -38,6 +38,8 @@ const styles = {
       "& button": {
         opacity: "0.8",
         transition: "all 0.3s ease",
+        color: white,
+        fontWeight: "600",
         "&:hover": {
           opacity: "1"
         }
@@ -60,6 +62,41 @@ const styles = {
         alignItems: "center",
         width: "100%"
       }
+    }
+  },
+  reservationItem: {
+    background: gray,
+    display: "flex",
+    justifyContent: "space-between",
+    "& p": {
+      fontSize: "1rem",
+      fontFamily: "Open Sans",
+      fontWeight: "400",
+      color: black,
+      alignSelf: "center",
+      margin: "0",
+      textAlign: "right"
+    }
+  },
+  mainInfoContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "15rem",
+    alignItems: "flex-start",
+    "& h3": {
+      fontSize: "1.2rem",
+      fontFamily: "Oswald",
+      fontWeight: "600",
+      color: black,
+      margin: "0"
+    },
+    "& p": {
+      fontSize: "1rem",
+      fontFamily: "Open Sans",
+      fontWeight: "400",
+      color: black,
+      margin: "0",
+      textAlign: "left"
     }
   }
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 
+import Item from "./Item";
 import styles from "./MenuStyles";
 
 class SimpleMenu extends React.Component {
@@ -23,7 +23,21 @@ class SimpleMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { classes } = this.props;
+    const { classes, type } = this.props;
+    let items;
+    if (type === "menu") {
+      items = [
+        <Item route="/pizzas" title="Pizzas" />,
+        <Item route="/pastas" title="Pastas" />,
+        <Item route="/bebidas" title="Bebidas" />
+      ];
+    } else {
+      items = [
+        <Item route="/misComentarios" title="Mis comentarios" />,
+        <Item route="/misReservaciones" title="Mis reservaciones" />,
+        <Item route="/" title="Cerrar sesión" />
+      ];
+    }
 
     return (
       <div>
@@ -37,7 +51,8 @@ class SimpleMenu extends React.Component {
               : `${classes.btnMenu}`
           }
         >
-          Menú
+          {type === "menu" ? "Menú" : "Perfil"}
+          <ExpandMoreIcon />
         </Button>
         <Menu
           id="simple-menu"
@@ -45,15 +60,7 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <Link to="/pizzas" className={classes.btnMenuItem}>
-            <MenuItem onClick={this.handleClose}>Pizzas</MenuItem>
-          </Link>
-          <Link to="/pastas" className={classes.btnMenuItem}>
-            <MenuItem onClick={this.handleClose}>Pastas</MenuItem>
-          </Link>
-          <Link to="/bebidas" className={classes.btnMenuItem}>
-            <MenuItem onClick={this.handleClose}>Bebidas</MenuItem>
-          </Link>
+          {items}
         </Menu>
       </div>
     );
