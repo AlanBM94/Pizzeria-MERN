@@ -69,26 +69,53 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     "& p": {
+      [sizes.down("md")]: {
+        overflow: "visible!important"
+      }
+    },
+
+    [sizes.down("md")]: {
+      flexDirection: "row",
+      width: "100%"
+    },
+    [sizes.down("xs")]: {
+      flexDirection: "column"
+    },
+
+    "& p": {
       fontSize: "1rem",
       fontFamily: "Open Sans",
       fontWeight: "400",
       color: black,
       alignSelf: "center",
       margin: "0",
-      textAlign: "right"
+      textAlign: "right",
+      [sizes.down("md")]: {
+        overflow: "visible!important"
+      },
+      [sizes.down("xs")]: {
+        textAlign: "center"
+      }
     }
   },
   mainInfoContainer: {
     display: "flex",
     flexDirection: "column",
     width: "15rem",
-    alignItems: "flex-start",
+    alignItems: "flex-start!important",
+    [sizes.down("md")]: {
+      alignItems: "flex-start"
+    },
+
     "& h3": {
       fontSize: "1.2rem",
       fontFamily: "Oswald",
       fontWeight: "600",
       color: black,
-      margin: "0"
+      margin: "0",
+      [sizes.down("xs")]: {
+        alignSelf: "center"
+      }
     },
     "& p": {
       fontSize: "1rem",
@@ -96,7 +123,10 @@ const styles = {
       fontWeight: "400",
       color: black,
       margin: "0",
-      textAlign: "left"
+      textAlign: "left",
+      [sizes.down("xs")]: {
+        textAlign: "center"
+      }
     }
   }
 };
