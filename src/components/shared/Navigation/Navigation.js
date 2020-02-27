@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+
 import { AuthContext } from "../context/authContext";
 import { FormModeContext } from "../context/formModeContext";
 import SimpleMenu from "../Menu/Menu";
@@ -48,7 +49,7 @@ function ButtonAppBar(props) {
             closeResponsiveMenu={closeResponsiveMenu}
             type="menu"
           />
-          {!authContext.isLoggedIn && (
+          {!authContext.token && !authContext.userId && (
             <Link to="/auth">
               <Button
                 className={`${classes.btnNormal} ${classes.btnIniciarSesion}`}
@@ -59,7 +60,7 @@ function ButtonAppBar(props) {
             </Link>
           )}
 
-          {!authContext.isLoggedIn && (
+          {!authContext.token && !authContext.userId && (
             <Link to="/auth">
               <Button
                 variant="contained"
@@ -71,14 +72,14 @@ function ButtonAppBar(props) {
             </Link>
           )}
 
-          {authContext.isLoggedIn && (
+          {authContext.token && authContext.userId && (
             <SimpleMenu
               responsive={false}
               closeResponsiveMenu={closeResponsiveMenu}
               type="profile"
             />
           )}
-          {authContext.isLoggedIn && (
+          {authContext.token && authContext.userId && (
             <Link to="/ubicacion">
               <Button variant="contained" className={classes.fullButton}>
                 Reservar

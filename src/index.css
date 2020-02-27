@@ -125,3 +125,12 @@ body {
   -o-animation: rotating 15s linear infinite;
   animation: rotating 15s linear infinite;
 }
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

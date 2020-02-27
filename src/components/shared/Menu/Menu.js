@@ -1,70 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { withStyles } from "@material-ui/core/styles";
-
 import Item from "./Item";
 import styles from "./MenuStyles";
 
-class SimpleMenu extends React.Component {
-  state = {
-    anchorEl: null
-  };
-
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-    this.props.closeResponsiveMenu();
-  };
-
-  render() {
-    const { anchorEl } = this.state;
-    const { classes, type } = this.props;
-    let items;
-    if (type === "menu") {
-      items = [
-        <Item route="/pizzas" title="Pizzas" />,
-        <Item route="/pastas" title="Pastas" />,
-        <Item route="/bebidas" title="Bebidas" />
-      ];
-    } else {
-      items = [
-        <Item route="/misComentarios" title="Mis comentarios" />,
-        <Item route="/misReservaciones" title="Mis reservaciones" />,
-        <Item route="/" title="Cerrar sesión" />
-      ];
-    }
-
-    return (
-      <div>
-        <Button
-          aria-owns={anchorEl ? "simple-menu" : undefined}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-          className={
-            this.props.responsive
-              ? `${classes.btnMenuResponsive}`
-              : `${classes.btnMenu}`
-          }
-        >
-          {type === "menu" ? "Menú" : "Perfil"}
-          <ExpandMoreIcon />
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          {items}
-        </Menu>
-      </div>
-    );
+const SimpleMenu = props => {
+  const [anchorEl, setAnchorEl] = useState();
+  const { classes, type, closeResponsiveMenu } = props;
+  let items;
+  if (type === "menu") {
+    items = [
+      <Item key="pizzas" route="/pizzas" title="Pizzas" />,
+      <Item key="pastas" route="/pastas" title="Pastas" />,
+      <Item key="bebidas" route="/bebidas" title="Bebidas" />
+    ];
+  } else {
+    items = [
+      <Item
+        key="misComentarios"
+        route="/misComentarios"
+        title="Mis comentarios"
+      />,
+      <Item
+        key="misReservaciones"
+        route="/misReservaciones"
+        title="Mis reservaciones"
+      />,
+      <Item key="cerrarSesión" route="/" title="Cerrar sesión" />
+    ];
   }
-}
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    closeResponsiveMenu();
+  };
+
+  return (
+    <div>
+      <Button
+        aria-owns={anchorEl ? "simple-menu" : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+        className={
+          props.responsive
+            ? `${classes.btnMenuResponsive}`
+            : `${classes.btnMenu}`
+        }
+      >
+        {type === "menu" ? "Menú" : "Perfil"}
+        <ExpandMoreIcon />
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <div onClick={handleClose}>{items}</div>
+      </Menu>
+    </div>
+  );
+};
 
 export default withStyles(styles)(SimpleMenu);
