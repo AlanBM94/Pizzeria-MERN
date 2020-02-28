@@ -16,12 +16,16 @@ const styles = {
     clipPath: "polygon(0 0, 100% 0%, 75% 100%, 0% 100%);",
     background: gray,
     overflow: "hidden",
+    "& .loading-spinner__overlay div": {
+      marginLeft: "-40rem"
+    },
     [sizes.down("md")]: {
       clipPath: "none",
       display: "flex",
       justifyContent: "center",
       alignItems: "flex-end",
-      width: "100%"
+      width: "100%",
+      position: "relative"
     },
     [sizes.down("xs")]: {
       height: "45%"
@@ -36,7 +40,6 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
-
     "& div div input": {
       border: "none",
       height: "2rem",
@@ -48,7 +51,8 @@ const styles = {
     [sizes.down("md")]: {
       width: "100%",
       margin: "0",
-      background: gray
+      background: gray,
+      minHeight: "60%"
     },
     "& h2": {
       margin: "0",

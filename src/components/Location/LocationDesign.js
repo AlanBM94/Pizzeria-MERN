@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { withStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 
+import { useHttpClient } from "../shared/hooks/useHttp";
 import { VALIDATOR_REQUIRE } from "../shared/utils/validator";
 import Input from "../shared/FormComponents/Input";
 import { useForm } from "../shared/hooks/useForm";
+import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
+import ErrorModal from "../shared/UIElements/ErrorModal";
 import Map from "../shared/Map/Map";
 import styles from "./LocationDesignStyles";
 
 const LocationDesign = props => {
   const { classes } = props;
+  const { sendRequest, isLoading, error, clearError } = useHttpClient();
+  const [coordinates, setCoordinates] = useState(null);
   const [formState, inputHandler, setFormData] = useForm(
     {
       location: {
@@ -44,8 +49,7 @@ const LocationDesign = props => {
     formState.inputs.dateAndTime.isValid = true;
   };
 
-  const selectLocationHandler = () => {
-    setIsLocationForm(false);
+  const setReservationData = () => {
     setFormData(
       {
         ...formState.inputs,
@@ -61,10 +65,42 @@ const LocationDesign = props => {
     );
   };
 
+  const findShopId = () => {
+    let id;
+    if (formState.inputs.location.value === "Iztacalco") id = "0001";
+    if (formState.inputs.location.value === "Nezahualcoyotl") id = "0002";
+    if (formState.inputs.location.value === "Gustavo A Madero") id = "0003";
+    return id;
+  };
+
+  const selectLocationHandler = async () => {
+    setIsLocationForm(false);
+    setReservationData();
+    const id = findShopId();
+    const responseData = await sendRequest(
+      `http://localhost:5000/api/pizzaShops/shop/${id}`
+    );
+    if (responseData) {
+      const coordinates = responseData.pizzaShop[0].location.coordinates;
+      setCoordinates(coordinates);
+    } else {
+      setCoordinates(null);
+      setIsLocationForm(true);
+    }
+  };
+
   return (
     <>
       <div className={classes.locationMap}>
-        <Map center={{ lat: 48.8583701, lng: 2.2922926 }} zoom={15} />
+        <ErrorModal error={error} onClear={clearError} hasFooter />
+        {isLoading && <LoadingSpinner />}
+        {!isLoading && (
+          <Map
+            center={(coordinates && coordinates) || [-99.0693269, 19.4045178]}
+            zoom={15}
+            location={coordinates}
+          />
+        )}
       </div>
       <form
         className={classes.locationForm}
@@ -75,19 +111,20 @@ const LocationDesign = props => {
             ? "Busca tu pizzeria más cercana"
             : "Haz tu reservación "}
         </h2>
-        {isLocationForm && (
+        {isLocationForm && !coordinates && (
           <Input
             typeElement="select"
             onInput={inputHandler}
             validators={[VALIDATOR_REQUIRE]}
             errorText="Debes de ingresar una delegación"
             id="location"
+            initialValue="Iztacalco"
             title="Ubicación"
             items={locations}
           />
         )}
 
-        {!isLocationForm && (
+        {!isLocationForm && coordinates && (
           <>
             <span>{formState.inputs.location.value}</span>
             <Input
@@ -112,7 +149,7 @@ const LocationDesign = props => {
           <Button
             type="button"
             onClick={selectLocationHandler}
-            disabled={noLocationValue}
+            disabled={noLocationValue && !coordinates}
             className={
               noLocationValue ? classes.disabledButton : classes.activeButton
             }
