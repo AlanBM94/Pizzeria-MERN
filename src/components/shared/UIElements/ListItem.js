@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/styles";
 
@@ -32,7 +32,8 @@ const ListItem = props => {
   const [showUpdateCommentForm, setShowUpdateCommentForm] = useState(false);
   const [showDeleteCommentForm, setShowDeleteCommentForm] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(null);
-  const [formState, inputHandler, setFormData] = useForm(
+  const [deletedComment, setDeletedComment] = useState(null);
+  const [formState, inputHandler] = useForm(
     {
       comment: {
         value: "",
@@ -73,6 +74,20 @@ const ListItem = props => {
     );
     if (responseData) {
       setUpdatedComment(responseData.comment.comment);
+    }
+  };
+
+  const deleteCommentHandler = async () => {
+    const responseData = await sendRequest(
+      `http://localhost:5000/api/comments/${id}`,
+      "DELETE",
+      null,
+      {
+        Authorization: "Bearer " + authContext.token
+      }
+    );
+    if (responseData) {
+      setDeletedComment(true);
     }
   };
 
@@ -128,29 +143,40 @@ const ListItem = props => {
           header="Elimina tu comentario"
           footer={
             <>
-              <Button onClick={closeDeleteCommentFormHandler}>Cancelar</Button>
-              <Button onClick={closeDeleteCommentFormHandler}>Eliminar</Button>
+              <Button onClick={closeDeleteCommentFormHandler}>
+                {deletedComment ? "Atras" : "Cancelar"}
+              </Button>
+              {!deletedComment && (
+                <Button onClick={deleteCommentHandler}>Eliminar</Button>
+              )}
             </>
           }
         >
-          <h3>
-            Estas seguro que deseas borrar tu comentario? No podrás deshacer esa
-            acción
-          </h3>
-        </Modal>
-
-        <li className={classes.listItem}>
-          <img src={userImage} alt={imageName} />
-          <p style={overflowType}>
-            {updatedComment ? updatedComment : content}
-          </p>
-          {editableContent && (
-            <div>
-              <Button onClick={showUpdateCommentFormHandler}>Editar</Button>
-              <Button onClick={showDeleteCommentFormHandler}>Eliminar</Button>
-            </div>
+          {isLoading && <LoadingSpinner />}
+          {!deletedComment && !isLoading && (
+            <h3>
+              Estas seguro que deseas borrar tu comentario? No podrás deshacer
+              esa acción
+            </h3>
           )}
-        </li>
+          {deletedComment && !isLoading && (
+            <h3>Tu comentario ha sido eliminado</h3>
+          )}
+        </Modal>
+        {!deletedComment && (
+          <li className={classes.listItem}>
+            <img src={userImage} alt={imageName} />
+            <p style={overflowType}>
+              {updatedComment ? updatedComment : content}
+            </p>
+            {editableContent && (
+              <div>
+                <Button onClick={showUpdateCommentFormHandler}>Editar</Button>
+                <Button onClick={showDeleteCommentFormHandler}>Eliminar</Button>
+              </div>
+            )}
+          </li>
+        )}
       </>
     ) : (
       <>

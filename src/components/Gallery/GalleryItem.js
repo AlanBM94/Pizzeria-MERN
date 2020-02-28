@@ -7,7 +7,7 @@ const GalleryItem = props => {
   const { classes } = props;
   return (
     <div className={classes.imageContainer}>
-      <img src={props.image} />
+      <img src={props.image} alt="" />
     </div>
   );
 };

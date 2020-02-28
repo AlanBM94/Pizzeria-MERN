@@ -1,8 +1,3 @@
-import sizes from "../../styles/sizes/sizez";
-import colors from "../../styles/colors/colors";
-
-const { black, white, primary } = colors;
-
 const styles = {
   gallery: {
     background: "white",

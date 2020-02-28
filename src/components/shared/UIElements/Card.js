@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import CommentIcon from "@material-ui/icons/Comment";
 import { withStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
@@ -18,7 +17,6 @@ import styles from "./CardStyles";
 const Card = props => {
   const { classes, image, title, description, category, id } = props;
   const authContext = useContext(AuthContext);
-  const history = useHistory();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showComments, setShowComments] = useState();
   const [loadedComments, setLoadedComments] = useState([]);
@@ -35,7 +33,6 @@ const Card = props => {
   );
 
   const showComentsHandler = () => {
-    console.log("hola mundo");
     setShowComments(true);
   };
 
@@ -154,7 +151,11 @@ const Card = props => {
       </Modal>
       <div className={classes.card}>
         <div className={`${classes.side} ${classes.frontSide} frontSide`}>
-          <img src={image} className={classes.cardImage} alt={title} />
+          <img
+            src={`http://localhost:5000/${image}`}
+            className={classes.cardImage}
+            alt={title}
+          />
         </div>
         <div className={`${classes.side} ${classes.backSide} backSide`}>
           <h3 className={classes.cardTitle}>{title}</h3>

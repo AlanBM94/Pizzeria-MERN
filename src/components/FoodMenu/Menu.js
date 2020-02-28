@@ -44,7 +44,7 @@ const Menu = props => {
               <Card
                 key={food._id}
                 id={food._id}
-                image={`../../images/${food.image}`}
+                image={food.image}
                 category={food.category}
                 title={food.title}
                 description={food.description}

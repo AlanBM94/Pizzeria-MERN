@@ -1,7 +1,6 @@
 import colors from "../../../styles/colors/colors";
-import sizes from "../../../styles/sizes/sizez";
 
-const { primary, black, gray, white } = colors;
+const { white } = colors;
 
 const styles = {
   ListContainer: {

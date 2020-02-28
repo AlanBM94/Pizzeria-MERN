@@ -5,7 +5,6 @@ export const useHttpClient = () => {
   const activeHttpRequests = useRef([]);
   const sendRequest = useCallback(
     async (url, method = "GET", body = null, headers = {}) => {
-      console.log(url, "esta es la url");
       setIsLoading(true);
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
@@ -19,8 +18,6 @@ export const useHttpClient = () => {
 
         const responseData = await response.json();
 
-        console.log(responseData, "esta es la respuesta");
-
         activeHttpRequests.current = activeHttpRequests.current.filter(
           reqCtrl => reqCtrl !== httpAbortCtrl
         );
@@ -31,7 +28,6 @@ export const useHttpClient = () => {
         setIsLoading(false);
         return responseData;
       } catch (error) {
-        console.log(error.message);
         setError(error.message);
         setIsLoading(false);
       }

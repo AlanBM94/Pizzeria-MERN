@@ -18,7 +18,6 @@ const styles = {
   },
   formContainer: {
     height: "100vh",
-    margin: "0",
     padding: "0",
     width: "25rem",
     margin: "0 auto",

@@ -109,7 +109,7 @@ const Auth = props => {
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
+      <ErrorModal error={error} onClear={clearError} hasFooter />
 
       <div className={classes.formContainer}>
         <div

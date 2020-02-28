@@ -16,7 +16,6 @@ import "./App.css";
 
 function App() {
   const [formMode, setFormMode] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuCategory, setMenuCategory] = useState("");
   const { token, userId, login, logout } = useAuth();
 
@@ -97,9 +96,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider
-        value={{ isLoggedIn, login, logout, token, userId }}
-      >
+      <AuthContext.Provider value={{ login, logout, token, userId }}>
         <FormModeContext.Provider
           value={{
             formMode: formMode,

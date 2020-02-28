@@ -33,7 +33,7 @@ const MyComments = props => {
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
+      <ErrorModal error={error} onClear={clearError} hasFooter />
       <Navigation />
       <div className={classes.container}>
         <h2>Mis comentarios</h2>
