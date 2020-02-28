@@ -8,7 +8,7 @@ const styles = {
   modal: {
     zIndex: "100",
     position: "fixed",
-    top: "15vh",
+    top: "10vh",
     left: "10%",
     width: "80%",
     background: white,
@@ -31,6 +31,16 @@ const styles = {
       border: `2px solid ${primary}`,
       color: white,
       padding: "0.5rem 2rem"
+    },
+    "& form": {
+      "& button": {
+        background: primary,
+        color: white,
+        padding: "0.5rem 2rem",
+        "&:hover": {
+          background: primary
+        }
+      }
     }
   },
   modalHeader: {
@@ -48,7 +58,14 @@ const styles = {
   },
   modalFooter: {
     padding: "1rem 0.5rem",
-    background: black
+    background: black,
+    display: "flex",
+    justifyContent: "space-between",
+    "& button:nth-child(2)": {
+      background: primary,
+      color: black,
+      fontWeight: "600"
+    }
   }
 };
 

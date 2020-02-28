@@ -51,6 +51,7 @@ const MyComments = props => {
             loadedComments.map(comment => (
               <ListItem
                 key={comment._id}
+                id={comment._id}
                 content={comment.comment}
                 imageName="Alan"
                 editableContent

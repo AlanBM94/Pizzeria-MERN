@@ -20,7 +20,7 @@ const Card = props => {
   const authContext = useContext(AuthContext);
   const history = useHistory();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState();
   const [loadedComments, setLoadedComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -35,6 +35,7 @@ const Card = props => {
   );
 
   const showComentsHandler = () => {
+    console.log("hola mundo");
     setShowComments(true);
   };
 
@@ -77,10 +78,7 @@ const Card = props => {
   useEffect(() => {
     const fetchCommentsByFood = async () => {
       const responseData = await sendRequest(
-        `http://localhost:5000/api/comments/${id}`,
-        "GET",
-        null,
-        {}
+        `http://localhost:5000/api/comments/${id}`
       );
       if (responseData) {
         setNewComment(null);
@@ -92,10 +90,11 @@ const Card = props => {
 
   return (
     <>
-      <ErrorModal error={error} clearError={clearError} />
+      <ErrorModal error={error} clearError={clearError} hasFooter={false} />
+
       <Modal
         show={showComments}
-        onCancel={closeCommentsHandler || newComment}
+        onCancel={closeCommentsHandler}
         header="Comentarios"
         footer={<Button onClick={closeCommentsHandler}>Cerrar</Button>}
       >
@@ -107,22 +106,22 @@ const Card = props => {
         {!isLoading && loadedComments.length === 0 && !newComment && (
           <h3>Esta {category} no tiene comentarios</h3>
         )}
-        {!isLoading && loadedComments.length > 0 && (
-          <List onModal>
-            {loadedComments.map(comment => (
+
+        <List onModal>
+          {!isLoading &&
+            loadedComments.length > 0 &&
+            loadedComments.map(comment => (
               <ListItem
+                key={comment._id}
                 content={comment.comment}
                 imageName="Alan"
                 type="comment"
               />
             ))}
-          </List>
-        )}
-        {!isLoading && newComment && (
-          <List onModal>
+          {!isLoading && newComment && (
             <ListItem content={newComment} imageName="Alan" type="comment" />
-          </List>
-        )}
+          )}
+        </List>
       </Modal>
       <Modal
         show={showForm}
@@ -166,7 +165,7 @@ const Card = props => {
             )}
             <p onClick={showComentsHandler}>
               <CommentIcon />
-              99
+              {newComment ? loadedComments.length + 1 : loadedComments.length}
             </p>
           </div>
         </div>

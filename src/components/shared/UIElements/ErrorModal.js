@@ -4,14 +4,15 @@ import Modal from "./Modal";
 import Button from "@material-ui/core/Button";
 
 const ErrorModal = props => {
+  const { onClear, error, hasFooter } = props;
   return (
     <Modal
-      onCancel={props.onClear}
+      onCancel={onClear}
       header="Un error ocurrió"
-      show={!!props.error}
-      footer={<Button onClick={props.onClear}>Okay</Button>}
+      show={!!error}
+      footer={hasFooter && <Button onClick={onClear}>Okay</Button>}
     >
-      <p>{props.error}</p>
+      <p>{error}</p>
     </Modal>
   );
 };
