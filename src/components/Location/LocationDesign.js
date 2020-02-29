@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 
+import { AuthContext } from "../shared/context/authContext";
 import { useHttpClient } from "../shared/hooks/useHttp";
 import { VALIDATOR_REQUIRE } from "../shared/utils/validator";
 import Input from "../shared/FormComponents/Input";
@@ -14,7 +16,9 @@ import styles from "./LocationDesignStyles";
 const LocationDesign = props => {
   const { classes } = props;
   const { sendRequest, isLoading, error, clearError } = useHttpClient();
-  const [coordinates, setCoordinates] = useState(null);
+  const [shop, setShop] = useState(null);
+  const history = useHistory();
+  const authContext = useContext(AuthContext);
   const [formState, inputHandler, setFormData] = useForm(
     {
       location: {
@@ -39,14 +43,31 @@ const LocationDesign = props => {
 
   const noLocationValue = formState.inputs.location.value === "";
 
-  const submitReservationHandler = e => {
+  const submitReservationHandler = async e => {
     e.preventDefault();
-    console.log(formState);
-  };
-
-  const changeDateHandler = date => {
-    formState.inputs.dateAndTime.value = date;
-    formState.inputs.dateAndTime.isValid = true;
+    console.log(
+      JSON.stringify({
+        pizzaShop: formState.inputs.location.value._id,
+        date: formState.inputs.dateAndTime.value,
+        numberOfPeople: formState.inputs.numberOfPeople.value
+      })
+    );
+    const responseData = await sendRequest(
+      "http://localhost:5000/api/reservations/",
+      "POST",
+      JSON.stringify({
+        pizzaShop: formState.inputs.location.value._id,
+        date: new Date(formState.inputs.dateAndTime.value),
+        numberOfPeople: formState.inputs.numberOfPeople.value
+      }),
+      {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authContext.token
+      }
+    );
+    if (responseData) {
+      history.push("/misReservaciones");
+    }
   };
 
   const setReservationData = () => {
@@ -81,24 +102,34 @@ const LocationDesign = props => {
       `http://localhost:5000/api/pizzaShops/shop/${id}`
     );
     if (responseData) {
-      const coordinates = responseData.pizzaShop[0].location.coordinates;
-      setCoordinates(coordinates);
+      const findedShop = responseData.pizzaShop[0];
+      setShop(findedShop);
+      setFormData({
+        ...formState.inputs,
+        location: {
+          value: findedShop,
+          isValid: true
+        }
+      });
     } else {
-      setCoordinates(null);
+      setShop(null);
       setIsLocationForm(true);
     }
   };
 
   return (
     <>
+      <ErrorModal error={error} clearError={clearError} />
       <div className={classes.locationMap}>
         <ErrorModal error={error} onClear={clearError} hasFooter />
         {isLoading && <LoadingSpinner />}
         {!isLoading && (
           <Map
-            center={(coordinates && coordinates) || [-99.0693269, 19.4045178]}
+            center={
+              (shop && shop.location.coordinates) || [-99.0693269, 19.4045178]
+            }
             zoom={15}
-            location={coordinates}
+            location={shop && shop.location.coordinates}
           />
         )}
       </div>
@@ -111,7 +142,7 @@ const LocationDesign = props => {
             ? "Busca tu pizzeria más cercana"
             : "Haz tu reservación "}
         </h2>
-        {isLocationForm && !coordinates && (
+        {isLocationForm && !shop && (
           <Input
             typeElement="select"
             onInput={inputHandler}
@@ -124,9 +155,9 @@ const LocationDesign = props => {
           />
         )}
 
-        {!isLocationForm && coordinates && (
+        {!isLocationForm && shop && (
           <>
-            <span>{formState.inputs.location.value}</span>
+            <span>{formState.inputs.location.value.address}</span>
             <Input
               typeElement="select"
               onInput={inputHandler}
@@ -145,11 +176,12 @@ const LocationDesign = props => {
             />
           </>
         )}
+        {isLoading && <LoadingSpinner />}
         {isLocationForm ? (
           <Button
             type="button"
             onClick={selectLocationHandler}
-            disabled={noLocationValue && !coordinates}
+            disabled={noLocationValue && !shop}
             className={
               noLocationValue ? classes.disabledButton : classes.activeButton
             }

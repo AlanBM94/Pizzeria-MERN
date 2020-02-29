@@ -102,7 +102,7 @@ const styles = {
   mainInfoContainer: {
     display: "flex",
     flexDirection: "column",
-    width: "15rem",
+    width: "-webkit-fill-available;",
     alignItems: "flex-start!important",
     [sizes.down("md")]: {
       alignItems: "flex-start"
